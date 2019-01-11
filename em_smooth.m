@@ -29,4 +29,4 @@ function s = em_smooth(x,win,n_win)
 %%%%%%%%%%%%%%%%%%%%%%%%%[DAG mfile header version 1]%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 kernel = window(win,n_win)';
-s = clean_convolve(x,kernel/sum(kernel));
+s = ig_clean_convolve(x,kernel/sum(kernel));
