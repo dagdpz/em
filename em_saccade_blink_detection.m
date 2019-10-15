@@ -3,7 +3,7 @@ function out = em_saccade_blink_detection(t,x,y,varargin)
 %
 % USAGE:
 %	out = em_saccade_blink_detection(t,x,y,varargin);
-% 	out = em_saccade_blink_detection(trial(k).tSample_from_time_start,trial(k).x_eye,trial(k).y_eye,'ma_em_settings_monkey_220Hz');
+% 	out = em_saccade_blink_detection(trial(k).tSample_from_time_start,trial(k).x_eye,trial(k).y_eye,'ma1_em_settings_monkey_220Hz');
 %	out = em_saccade_blink_detection(t,x,y,'OpenFigure',true,'Plot',true)
 %
 % INPUTS:
@@ -53,6 +53,7 @@ defpar = { ...
 	'VelSmoothConvLen',	'double',	'nonempty',	0; ...			% s, length of conv kernel, set to 0 of no smooting
 	'VelFilterCutoff',	'double',	'nonempty',	30; ...			% Hz, set to 0 if no filter
 	'VelAdaptiveThr',	'logical',	'nonempty',	false; ...		% true or false
+    'MinFixDurAfterSac','double',	'nonempty',	0; ...          % s
 	
 	'Plot',		'logical',	'nonempty',	false; ...			% true or false
 	'OpenFigure',	'logical',	'nonempty',	false; ...			% true or false
@@ -174,6 +175,15 @@ valid_idx = intersect(idx_dur_valid,idx_amp_valid);
 
 sac_onsets	= ti(on_i(valid_idx));
 sac_offsets	= ti(off_i(valid_idx));
+
+% Minimal fixation period after saccade
+if par.MinFixDurAfterSac,
+    FixDur = sac_onsets(2:end) - sac_offsets(1:end-1);
+    ind_fix_dur_valid = [find(FixDur > par.MinFixDurAfterSac) length(valid_idx)];
+    valid_idx = valid_idx(ind_fix_dur_valid);
+    sac_onsets = sac_onsets(ind_fix_dur_valid);
+    sac_offsets = sac_offsets(ind_fix_dur_valid);
+end
 
 out.par = par;
 out.sac_onsets = sac_onsets;
