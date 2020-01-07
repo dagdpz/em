@@ -22,8 +22,9 @@ function [td,xd,yd] = em_downsample2real(t,x,y,sr)
 %
 % Change log:
 % 2015-10-01:	Created function (Igor Kagan)
-% ...
-% $Revision: 1.0 $  $Date: 2015-10-01 17:43:24 $
+% 2020-01-07:   Changed removing consecutive identical segments to 2 x t_segment duration (from t_segment duration)
+%               to account for variations in eyetracker sampling rate (IK)
+% $Revision: 1.1 $  $Date: 2020-01-07 17:43:24 $
 
 % ADDITIONAL INFO:
 % ...
@@ -39,8 +40,8 @@ y = y(:)';
 
 
 
-t_segment = 1/sr; % s 
-% we want to remove all consecutive identical segments of up to t_segment duration
+t_segment = 2 * 1/sr; % s 
+% we want to remove all consecutive identical segments of up to 2 x t_segment duration
 % longer segments (e.g. due to signal dropout/blink saturation) will not be removed
 
 

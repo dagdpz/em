@@ -70,7 +70,7 @@ defpar = { ...
 
 if nargin > 3, % specified parameters
 	if ~isstruct(varargin{1}),
-		if length(varargin)==1, % specificed .m file with settings, as em_custom_settings_example.m
+		if length(varargin)==1, % specified .m file with settings, such as em_custom_settings_example.m
 			run(varargin{1});
 			par = struct(settings{:});
 		else % parameter-value pair(s)
