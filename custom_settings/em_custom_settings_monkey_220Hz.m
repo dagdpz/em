@@ -11,7 +11,7 @@ settings = {...
 	'SacOffsetVelThr',	10, ...			% deg/s
 	'MinSacDuration',	0.03, ...		% s
 	'MaxSacDuration',	Inf, ...		% s
-	'MinSacAmplitude',	1, ...          % deg
+	'MinSacAmplitude',	0.5, ...         % deg
 	'MaxSacAmplitude',	Inf, ...		% deg
 	'PosSmoothConvWin',	'gausswin', ...	% 'rectwin', 'gausswin', etc. see 'help window'
 	'PosSmoothConvLen',	0, ...			% s, length of conv kernel, set to 0 of no smooting
@@ -22,6 +22,6 @@ settings = {...
 	'VelAdaptiveThr',	false, ...		% true or false
     'MinFixDurAfterSac',0, ...          % s
 	'Plot',             true, ...       % true or false (if true, results of saccade detection will be plotted)
-	'OpenFigure',		false, ...		% true or false (if true, new figure showing saccade detection will be open)
+	'OpenFigure',		true, ...		% true or false (if true, new figure showing saccade detection will be open)
 	
 	};
