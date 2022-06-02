@@ -16,7 +16,7 @@ function out = em_saccade_blink_detection(t,x,y,varargin)
 % OUTPUTS:
 %		out		- structure containing detected saccade parameters
 %
-% REQUIRES:	Neuroelf, Igtools, em
+% REQUIRES:	Igtools
 %
 % See also em_smooth, em_filter
 %
