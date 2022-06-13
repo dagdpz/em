@@ -69,6 +69,7 @@ defpar = { ...
     };
 
 if nargin > 3, % specified parameters
+    settings = ''; % For newer MATLAB versions that have settings.m as a built-in function
     if ~isstruct(varargin{1}),
         if length(varargin)==1, % specified .m file with settings, such as em_custom_settings_example.m
             run(varargin{1});
